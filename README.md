@@ -4,7 +4,7 @@ Tommie's Trello-style project board. Vanilla HTML, CSS, and JavaScript — no bu
 
 **Live site:** https://tommielopt-hk.github.io/pm-board/
 
-GitHub Pages serves this repository from the `main` branch, folder `/` (root).
+GitHub Pages source: branch `main`, folder `/` (root).
 
 Serve locally from the repository root:
 
