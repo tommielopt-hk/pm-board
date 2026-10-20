@@ -4,7 +4,7 @@
 (function () {
   "use strict";
 
-  const STORAGE_KEY = "pm-board-v2";
+  const STORAGE_KEY = "pm-board-v3";
 
   const LABEL_NAMES = {
     feature: "Feature",
@@ -14,7 +14,7 @@
   };
 
   const DEFAULT_DATA = {
-    title: "My Projects",
+    title: "AI is Taking / Growing Your Pie",
     lists: [
       {
         id: "list-backlog",
@@ -22,21 +22,21 @@
         cards: [
           {
             id: "card-1",
-            title: "Research competitor PM tools",
-            description: "Compare Trello, Asana, and Linear feature sets.",
-            label: "chore",
+            title: "Landing page",
+            description: "Public page for the campaign story and how to follow the debate.",
+            label: "feature",
           },
           {
             id: "card-2",
-            title: "Sketch mobile board layout",
-            description: "Rough wireframes for phone viewport.",
-            label: "feature",
+            title: "Merch/trophies",
+            description: "Source trophies and participant merch for the debate.",
+            label: "design",
           },
           {
             id: "card-3",
-            title: "Define MVP acceptance criteria",
-            description: "",
-            label: "feature",
+            title: "Finale tickets",
+            description: "Decide how finale attendance is offered to the public.",
+            label: "chore",
           },
         ],
       },
@@ -46,21 +46,21 @@
         cards: [
           {
             id: "card-4",
-            title: "Set up project repo and README",
-            description: "Init git, add license, basic docs.",
+            title: "Judges list + invite",
+            description: "Assemble the judges roster and send invitations.",
             label: "chore",
           },
           {
             id: "card-5",
-            title: "Design color tokens for dark mode",
-            description: "Extend palette beyond the teal board.",
-            label: "feature",
+            title: "HQ window landlord approval",
+            description: "Get landlord approval for the HQ window installation.",
+            label: "chore",
           },
           {
             id: "card-6",
-            title: "Add keyboard shortcuts for cards",
-            description: "N for new, Del to remove focused card.",
-            label: "feature",
+            title: "Finale date/venue",
+            description: "Lock the finale date and venue.",
+            label: "chore",
           },
         ],
       },
@@ -70,15 +70,39 @@
         cards: [
           {
             id: "card-7",
-            title: "Build drag-and-drop between lists",
-            description: "HTML5 DnD with drop indicators.",
-            label: "feature",
+            title: "School list",
+            description: "Build the school outreach list for the interschool debate.",
+            label: "chore",
           },
           {
             id: "card-8",
-            title: "Fix card shadow on Safari",
-            description: "Subtle clipping on list overflow.",
-            label: "bug",
+            title: "School invite blast",
+            description: "Send the school invitation across the outreach list.",
+            label: "chore",
+          },
+          {
+            id: "card-9",
+            title: "Debate schedule",
+            description: "Confirm dates and locations for debate rounds.",
+            label: "chore",
+          },
+          {
+            id: "card-10",
+            title: "Debate topics",
+            description: "Confirm topics and share them before each round.",
+            label: "feature",
+          },
+          {
+            id: "card-11",
+            title: "OOH quote + KV",
+            description: "Finalize the out-of-home key visual and production timing.",
+            label: "design",
+          },
+          {
+            id: "card-12",
+            title: "HK01 streaming",
+            description: "Coordinate live streaming and debate notices with HK01.",
+            label: "feature",
           },
         ],
       },
@@ -87,15 +111,15 @@
         title: "Done",
         cards: [
           {
-            id: "card-9",
-            title: "Create initial board shell",
-            description: "Header, lists, and sample cards.",
-            label: "feature",
+            id: "card-13",
+            title: "School invite letter",
+            description: "School invitation letter is ready.",
+            label: "chore",
           },
           {
-            id: "card-10",
-            title: "Wire localStorage persistence",
-            description: "Save title, lists, and card order.",
+            id: "card-14",
+            title: "Coach invite letter",
+            description: "Coach invitation letter is ready.",
             label: "chore",
           },
         ],
@@ -184,7 +208,7 @@
   }
 
   function render() {
-    titleEl.textContent = state.title || "My Projects";
+    titleEl.textContent = state.title || "AI is Taking / Growing Your Pie";
     boardEl.replaceChildren();
 
     for (const list of state.lists) {
@@ -351,7 +375,7 @@
   }
 
   titleEl.addEventListener("blur", () => {
-    const next = titleEl.textContent.trim() || "My Projects";
+    const next = titleEl.textContent.trim() || "AI is Taking / Growing Your Pie";
     titleEl.textContent = next;
     if (next !== state.title) {
       state.title = next;
@@ -392,7 +416,7 @@
   });
 
   btnReset.addEventListener("click", () => {
-    if (!confirm("Reset the board to the sample 10 cards? Your changes will be lost.")) return;
+    if (!confirm("Reset the board to the campaign sample? Your changes will be lost.")) return;
     state = cloneDefault();
     save();
     render();
@@ -400,8 +424,8 @@
 
   // Boot
   state = load();
-  // If stored board has wrong card count from older experiments, keep user data;
-  // first visit uses DEFAULT_DATA with exactly 10 cards.
+  // A new STORAGE_KEY loads DEFAULT_DATA for visitors who still have the old demo.
+  // Reset restores this campaign sample.
   save();
   render();
 })();
