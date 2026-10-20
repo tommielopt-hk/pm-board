@@ -1,6 +1,6 @@
 # PM Board
 
-Tommie's Trello-style project board. Vanilla HTML, CSS, and JavaScript — no build step.
+Tommie's Trello-style project board. The sample board is the public **AI is Taking / Growing Your Pie** campaign tracker — task status only, no financials. Vanilla HTML, CSS, and JavaScript — no build step.
 
 **Live site:** https://tommielopt-hk.github.io/pm-board/
 
