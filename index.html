@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Projects — PM Board</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header class="board-header">
+    <div class="header-left">
+      <span class="logo" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <rect x="3" y="3" width="7" height="18" rx="1.5"/>
+          <rect x="14" y="3" width="7" height="12" rx="1.5"/>
+        </svg>
+      </span>
+      <h1 class="board-title" id="board-title" contenteditable="true" spellcheck="false">My Projects</h1>
+    </div>
+    <div class="header-right">
+      <button type="button" class="btn-ghost" id="btn-reset" title="Reset to sample data">Reset</button>
+    </div>
+  </header>
+
+  <main class="board" id="board" aria-label="Project board">
+    <!-- Lists rendered by app.js -->
+  </main>
+
+  <template id="tpl-list">
+    <section class="list" data-list-id="">
+      <div class="list-header">
+        <h2 class="list-title" contenteditable="true" spellcheck="false"></h2>
+        <span class="card-count" aria-hidden="true">0</span>
+      </div>
+      <div class="cards" data-drop-zone></div>
+      <button type="button" class="add-card-btn">
+        <span class="plus">+</span> Add a card
+      </button>
+    </section>
+  </template>
+
+  <template id="tpl-card">
+    <article class="card" draggable="true" data-card-id="" tabindex="0">
+      <div class="card-labels" hidden></div>
+      <p class="card-title"></p>
+      <p class="card-desc" hidden></p>
+      <button type="button" class="card-delete" title="Delete card" aria-label="Delete card">×</button>
+    </article>
+  </template>
+
+  <dialog id="add-card-dialog" class="dialog">
+    <form method="dialog" id="add-card-form">
+      <h3>Add a card</h3>
+      <label>
+        Title
+        <input type="text" name="title" required maxlength="120" placeholder="What needs to be done?" autofocus />
+      </label>
+      <label>
+        Description <span class="optional">(optional)</span>
+        <textarea name="description" rows="3" maxlength="400" placeholder="Add a short note…"></textarea>
+      </label>
+      <label>
+        Label
+        <select name="label">
+          <option value="">None</option>
+          <option value="feature">Feature</option>
+          <option value="bug">Bug</option>
+          <option value="chore">Chore</option>
+          <option value="design">Design</option>
+        </select>
+      </label>
+      <div class="dialog-actions">
+        <button type="submit" class="btn-primary" value="add">Add card</button>
+        <button type="button" class="btn-ghost" id="add-card-cancel" value="cancel">Cancel</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
