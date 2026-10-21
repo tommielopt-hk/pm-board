@@ -1,6 +1,6 @@
 # PM Board
 
-Tommie's Trello-style project board. The sample board is the public **AI is Taking / Growing Your Pie** campaign tracker — task status only, no financials. Vanilla HTML, CSS, and JavaScript — no build step.
+Tommie's Trello-style project board. The sample board is **Mr Lee — Grok Bot 25 Concepts**: a teach → revise → master tracker for the 25 Grok Bot concepts (Nate Herk). All 25 cards start in **Concepts**; drag a card to **Teach** after class, **Revise** while reviewing, and **Master** when it sticks. Vanilla HTML, CSS, and JavaScript — no build step.
 
 **Live site:** https://tommielopt-hk.github.io/pm-board/
 
