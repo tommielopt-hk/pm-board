@@ -1,10 +1,12 @@
 /**
- * Trello-inspired PM Board — vanilla JS, localStorage persistence
+ * Trello-inspired PM Board — vanilla JS, localStorage persistence.
+ * Sample board: Mr Lee — Grok Bot 25 Concepts (teach → revise → master).
  */
 (function () {
   "use strict";
 
-  const STORAGE_KEY = "pm-board-v3";
+  const STORAGE_KEY = "pm-board-v4-mrlee";
+  const DEFAULT_TITLE = "Mr Lee — Grok Bot 25 Concepts";
 
   const LABEL_NAMES = {
     feature: "Feature",
@@ -14,115 +16,178 @@
   };
 
   const DEFAULT_DATA = {
-    title: "AI is Taking / Growing Your Pie",
+    title: DEFAULT_TITLE,
     lists: [
       {
-        id: "list-backlog",
-        title: "Backlog",
+        id: "list-concepts",
+        title: "Concepts",
         cards: [
           {
             id: "card-1",
-            title: "Landing page",
-            description: "Public page for the campaign story and how to follow the debate.",
+            title: "1. Single bot",
+            description: "One named bot with a job title and description; each chat is its own specialist.",
             label: "feature",
           },
           {
             id: "card-2",
-            title: "Merch/trophies",
-            description: "Source trophies and participant merch for the debate.",
-            label: "design",
+            title: "2. Bot descriptions",
+            description: "Clear descriptions let bots know when to take work or hand off to a teammate.",
+            label: "feature",
           },
           {
             id: "card-3",
-            title: "Finale tickets",
-            description: "Decide how finale attendance is offered to the public.",
-            label: "chore",
+            title: "3. Bot templates",
+            description: "Import or share bots (skills/memories/structure); reconnect your own accounts.",
+            label: "feature",
           },
-        ],
-      },
-      {
-        id: "list-todo",
-        title: "To Do",
-        cards: [
           {
             id: "card-4",
-            title: "Judges list + invite",
-            description: "Assemble the judges roster and send invitations.",
-            label: "chore",
+            title: "4. Context & memory",
+            description: "Context = current chat + inputs; memory = lasting facts. Global memory vs per-bot memory.",
+            label: "feature",
           },
           {
             id: "card-5",
-            title: "HQ window landlord approval",
-            description: "Get landlord approval for the HQ window installation.",
-            label: "chore",
+            title: "5. Compaction",
+            description: "Each bot auto-summarises old chat so the context window does not rot; you do not control the moment.",
+            label: "feature",
           },
           {
             id: "card-6",
-            title: "Finale date/venue",
-            description: "Lock the finale date and venue.",
+            title: "6. Agent computer",
+            description: "Every bot has a desktop/screen it can drive; bots share one underlying computer.",
             label: "chore",
           },
-        ],
-      },
-      {
-        id: "list-progress",
-        title: "In Progress",
-        cards: [
           {
             id: "card-7",
-            title: "School list",
-            description: "Build the school outreach list for the interschool debate.",
+            title: "7. Browser",
+            description: "Bot browser with saved logins for sites you signed into.",
             label: "chore",
           },
           {
             id: "card-8",
-            title: "School invite blast",
-            description: "Send the school invitation across the outreach list.",
+            title: "8. File explorer (shared workspace)",
+            description: "All bots see the same shared workspace files on the agent computer.",
             label: "chore",
           },
           {
             id: "card-9",
-            title: "Debate schedule",
-            description: "Confirm dates and locations for debate rounds.",
+            title: "9. Terminal",
+            description: "Bots can run shell commands and scripts like a normal computer.",
             label: "chore",
           },
           {
             id: "card-10",
-            title: "Debate topics",
-            description: "Confirm topics and share them before each round.",
-            label: "feature",
+            title: "10. Local file access",
+            description: "With approval; bots can read/rename/move files on your own machine.",
+            label: "chore",
           },
           {
             id: "card-11",
-            title: "OOH quote + KV",
-            description: "Finalize the out-of-home key visual and production timing.",
+            title: "11. Plugins",
+            description: "Connect Slack/Gmail/Docs/etc. by adding a plugin and signing in; multi-account OK.",
             label: "design",
           },
           {
             id: "card-12",
-            title: "HK01 streaming",
-            description: "Coordinate live streaming and debate notices with HK01.",
+            title: "12. Skills",
+            description: "Reusable recipes (when to use / steps / failure handling); editable and improvable with feedback.",
+            label: "design",
+          },
+          {
+            id: "card-13",
+            title: "13. Teach a task",
+            description: "Record yourself in the browser; bot watches and turns the demo into a Skill.",
+            label: "design",
+          },
+          {
+            id: "card-14",
+            title: "14. Routines",
+            description: "Schedule or interval triggers that can run a Skill automatically.",
+            label: "design",
+          },
+          {
+            id: "card-15",
+            title: "15. Webhooks / event triggers",
+            description: "Event doorbells (form/Slack/email/CRM) wake a bot with a payload.",
+            label: "design",
+          },
+          {
+            id: "card-16",
+            title: "16. Group chats",
+            description: "Multi-bot rooms where specialists discuss and you oversee.",
             label: "feature",
+          },
+          {
+            id: "card-17",
+            title: "17. Mentions",
+            description: "@Name steers a teammate; good descriptions also let bots self-delegate.",
+            label: "feature",
+          },
+          {
+            id: "card-18",
+            title: "18. Handoffs",
+            description: "Bots assign work to other bots; you can open their private handoff threads.",
+            label: "feature",
+          },
+          {
+            id: "card-19",
+            title: "19. Replies",
+            description: "Reply-to a specific message to pin context (like Slack).",
+            label: "feature",
+          },
+          {
+            id: "card-20",
+            title: "20. Approvals",
+            description: "Pause for allow-once / always-allow on computer and risky actions.",
+            label: "chore",
+          },
+          {
+            id: "card-21",
+            title: "21. Human takeover",
+            description: "Bot stops for sign-in/sensitive steps; enter secrets on screen not in chat.",
+            label: "chore",
+          },
+          {
+            id: "card-22",
+            title: "22. Weekly usage",
+            description: "Subscription usage resets weekly; group chats cost more than 1:1.",
+            label: "chore",
+          },
+          {
+            id: "card-23",
+            title: "23. Run history",
+            description: "See that routines/webhooks fired (success/fail); limited drill-down today.",
+            label: "chore",
+          },
+          {
+            id: "card-24",
+            title: "24. Notifications",
+            description: "Per-bot finish/needs-input alerts; desktop + phone stay synced.",
+            label: "chore",
+          },
+          {
+            id: "card-25",
+            title: "25. Managing bots",
+            description: "Pin / move sections / hide / delete / share template / duplicate (clears chat history) / copy conversation ID.",
+            label: "chore",
           },
         ],
       },
       {
-        id: "list-done",
-        title: "Done",
-        cards: [
-          {
-            id: "card-13",
-            title: "School invite letter",
-            description: "School invitation letter is ready.",
-            label: "chore",
-          },
-          {
-            id: "card-14",
-            title: "Coach invite letter",
-            description: "Coach invitation letter is ready.",
-            label: "chore",
-          },
-        ],
+        id: "list-teach",
+        title: "Teach",
+        cards: [],
+      },
+      {
+        id: "list-revise",
+        title: "Revise",
+        cards: [],
+      },
+      {
+        id: "list-master",
+        title: "Master",
+        cards: [],
       },
     ],
   };
@@ -208,7 +273,7 @@
   }
 
   function render() {
-    titleEl.textContent = state.title || "AI is Taking / Growing Your Pie";
+    titleEl.textContent = state.title || DEFAULT_TITLE;
     boardEl.replaceChildren();
 
     for (const list of state.lists) {
@@ -375,7 +440,7 @@
   }
 
   titleEl.addEventListener("blur", () => {
-    const next = titleEl.textContent.trim() || "AI is Taking / Growing Your Pie";
+    const next = titleEl.textContent.trim() || DEFAULT_TITLE;
     titleEl.textContent = next;
     if (next !== state.title) {
       state.title = next;
@@ -416,7 +481,7 @@
   });
 
   btnReset.addEventListener("click", () => {
-    if (!confirm("Reset the board to the campaign sample? Your changes will be lost.")) return;
+    if (!confirm("Reset the board to the Mr Lee concept tracker? Your changes will be lost.")) return;
     state = cloneDefault();
     save();
     render();
@@ -424,8 +489,8 @@
 
   // Boot
   state = load();
-  // A new STORAGE_KEY loads DEFAULT_DATA for visitors who still have the old demo.
-  // Reset restores this campaign sample.
+  // A new STORAGE_KEY loads DEFAULT_DATA for visitors who still have the old campaign board.
+  // Reset restores this same concept tracker.
   save();
   render();
 })();
