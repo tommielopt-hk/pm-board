@@ -4,6 +4,8 @@ Tommie's Trello-style project board. The sample board is the public **AI is Taki
 
 **Live site:** https://tommielopt-hk.github.io/pm-board/
 
+**Flashcards:** https://tommielopt-hk.github.io/pm-board/flashcards/
+
 GitHub Pages source: branch `main`, folder `/` (root).
 
 Serve locally from the repository root:
